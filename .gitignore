@@ -75,3 +75,9 @@ Logs/AssetImportWorker1-prev.log
 Logs/shadercompiler-UnityShaderCompiler.exe0.log
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 UserSettings/Layouts/default-2022.dwlt
+Logs/AssetImportWorker0-prev.log
+Logs/AssetImportWorker1-prev.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+UserSettings/Layouts/default-2022.dwlt
+*.log
