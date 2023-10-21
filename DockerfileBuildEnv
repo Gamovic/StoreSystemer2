@@ -1,0 +1,24 @@
+# Build Environment-fase
+FROM unityci/editor:ubuntu-2022.3.11f1-linux-il2cpp-2.0.0 AS builder
+
+# Kopier dit Unity-projekt til arbejdsmappe i containeren
+COPY ./ /app/SystemerProjekt
+
+# RUN unity-editor login --username emilstephansen@hotmail.com --password Assen1234
+
+# Udfoer bygningen af Linux-headless-server ved hjaelp af Unity's kommandolinjevaerktoej
+# RUN unity-editor -batchmode -nographics -projectPath /app/YourUnityProject -buildLinux64 /app/YourUnityProject/BuildsByCustomInspector/LinuxServer
+
+RUN unity-editor -quit -batchmode -nographics -buildTarget EmbeddedLinux -executeMethod Builder.Build -projectPath /app/SystemerProjekt
+
+# Runtime-fase
+FROM ubuntu:bionic AS runtime
+
+# Kopier kun de noedvendige filer fra build environment-fasen til runtime-containeren
+COPY --from=builder /app/SystemerProjekt/BuildsByCustomInspector/LinuxServer /app/LinuxServer
+
+# Eksponer den relevante port, som din server lytter pae
+EXPOSE 15672
+
+# Angiv kommandoen for at koere din Unity-headless-server ved opstart af containeren
+CMD ["./LinuxServer"]

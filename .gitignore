@@ -1,0 +1,26 @@
+# Ignore generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# macOS
+.DS_Store
+
+# User-specific files
+*.suo
+*.user
+*.userprefs
+*.usertasks
+*.sln.docstates
+
+# Auto-generated documentation folder
+Documentation/
