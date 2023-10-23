@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SorenScene.unity
+    guid: 830f940eff16fb246b8e08e7384eb4e6
   m_configObjects: {}
