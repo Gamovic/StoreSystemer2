@@ -10,11 +10,11 @@ public class NetworkCommandLine : MonoBehaviour
     {
         netManager = GetComponentInParent<NetworkManager>();
 
-        if (Application.isEditor)
-        {
-            netManager.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("room password");
-            netManager.StartClient();
-        }
+        //if (Application.isEditor)
+        //{
+        //    netManager.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("room password");
+        //    netManager.StartClient();
+        //}
        
         var args = GetCommandlineArgs();
 

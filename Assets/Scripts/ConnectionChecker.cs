@@ -16,7 +16,11 @@ public class ConnectionChecker : MonoBehaviour
             m_NetworkManager.OnClientDisconnectCallback += OnClientDisconnectCallback;
             m_NetworkManager.ConnectionApprovalCallback = ApprovalCheck;
             m_NetworkManager.OnClientConnectedCallback += OnClientConnectedCallBack;
+
+            //Setup();
+
         }
+
     }
 
     private void OnClientConnectedCallBack(ulong obj)
@@ -27,7 +31,7 @@ public class ConnectionChecker : MonoBehaviour
     private void Setup()
     {
         NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
-        NetworkManager.Singleton.StartHost();
+        NetworkManager.Singleton.StartServer();
     }
 
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
