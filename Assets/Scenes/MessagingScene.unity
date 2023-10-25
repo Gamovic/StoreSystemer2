@@ -779,6 +779,9 @@ MonoBehaviour:
   nameInput: {fileID: 1971137833}
   messageInput: {fileID: 1598089525}
   sendButton: {fileID: 174671751}
+  queueName: receive_msg_queue
+  rabbitMqExchange: direct_logs
+  rabbitMqRoutingKey: black
 --- !u!1 &823059567
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +947,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiUrl: https://localhost:5001/messages
   messageText: {fileID: 2133724870}
+  rabbitMqHost: localhost
+  rabbitMqUsername: guest
+  rabbitMqPassword: guest
+  rabbitMqExchange: direct_logs
+  rabbitMqRoutingKey: black
 --- !u!4 &955592866
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1007,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017108874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a97c24e839baa24690686afc3bc7189, type: 3}
   m_Name: 
@@ -1012,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017108874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79f09e735599826428ad35a301f64e6c, type: 3}
   m_Name: 
