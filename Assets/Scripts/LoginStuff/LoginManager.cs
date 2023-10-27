@@ -58,7 +58,7 @@ public class LoginManager : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        if (/*www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError*/ www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Login request error: " + www.error);
             feedbackText.text = "Login failed. Please try again.";
@@ -67,36 +67,51 @@ public class LoginManager : MonoBehaviour
         {
             string responseText = www.downloadHandler.text;
 
-            try
+            LoginArray loginArray = JsonHelper.FromJson<LoginArray>(responseText);
+
+
+            //try
+            //{
+            //    LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
+
+            //    // Check if deserialization was successful
+            //    if (loginResponse != null)
+            //    {
+            //        if (loginResponse.success)
+            //        {
+            //            feedbackText.text = "Login successful!";
+            //            // Store the token securely and transition to the game scene.
+            //        }
+            //        else
+            //        {
+            //            feedbackText.text = "Invalid credentials. Please try again.";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        feedbackText.text = "Invalid response from the server.";
+            //    }
+            //}
+            //catch (System.Exception e)
+            //{
+            //    Debug.LogError("Deserialization error: " + e.Message);
+            //    feedbackText.text = "Error during deserialization. Please try again.";
+            //}
+
+
+            LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
+
+            Debug.Log(loginResponse);
+
+            if (loginResponse.token != null)
             {
-                LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
-
-                // Check if deserialization was successful
-                if (loginResponse != null)
-                {
-                    if (loginResponse.success)
-                    {
-                        feedbackText.text = "Login successful!";
-                        // Store the token securely and transition to the game scene.
-                    }
-                    else
-                    {
-                        feedbackText.text = "Invalid credentials. Please try again.";
-                    }
-                }
-                else
-                {
-                    feedbackText.text = "Invalid response from the server.";
-                }
+                feedbackText.text = "Login successful!";
             }
-            catch (System.Exception e)
+
+            else
             {
-                Debug.LogError("Deserialization error: " + e.Message);
-                feedbackText.text = "Error during deserialization. Please try again.";
+                feedbackText.text = "Invalid credentials. Please try again.";
             }
-
-
-            //LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
 
             //if (loginResponse.success)
             //{
@@ -136,14 +151,16 @@ public class LoginManager : MonoBehaviour
                 string responseText = request.downloadHandler.text;
                 LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
 
-                if (loginResponse.success)
-                {
-                    feedbackText.text = "Login successful!";
-                }
-                else
-                {
-                    feedbackText.text = "Invalid credentials. Please try again.";
-                }
+                Debug.Log(loginResponse);
+
+                //if (loginResponse.success)
+                //{
+                //    feedbackText.text = "Login successful!";
+                //}
+                //else
+                //{
+                //    feedbackText.text = "Invalid credentials. Please try again.";
+                //}
             }
         }
     }

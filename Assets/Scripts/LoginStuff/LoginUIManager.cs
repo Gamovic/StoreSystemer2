@@ -53,15 +53,15 @@ public class LoginUIManager : MonoBehaviour
             string responseText = www.downloadHandler.text;
             LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
 
-            if (loginResponse.success)
-            {
-                feedbackText.text = "Login successful!";
-                // Store the token securely and transition to the game scene.
-            }
-            else
-            {
-                feedbackText.text = "Invalid credentials. Please try again.";
-            }
+            //if (loginResponse.success)
+            //{
+            //    feedbackText.text = "Login successful!";
+            //    // Store the token securely and transition to the game scene.
+            //}
+            //else
+            //{
+            //    feedbackText.text = "Invalid credentials. Please try again.";
+            //}
         }
     }
 }

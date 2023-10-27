@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LoginResponse : MonoBehaviour
+public class LoginResponse
 {
-    public bool success;      // Indicates if the login was successful.
-    public string message;    // A message from the server (e.g., for error feedback).
+   // public bool success;      // Indicates if the login was successful.
+    //public string message;    // A message from the server (e.g., for error feedback).
     public string token;      // The authentication token, if login is successful.
 
 
