@@ -2360,6 +2360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423fa79becf63d0498b468baac287b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usernameInput: {fileID: 716203690}
+  passwordInput: {fileID: 1280267041}
+  loginButton: {fileID: 1271019286}
+  feedbackText: {fileID: 115790456}
 --- !u!4 &1949347939
 Transform:
   m_ObjectHideFlags: 0
@@ -2382,7 +2386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949347937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1addb184930ad8c4b94b2ad651a1514d, type: 3}
   m_Name: 
