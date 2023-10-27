@@ -67,7 +67,7 @@ public class MsgProducer : MonoBehaviour
         SendToRabbitMQ(newMessage);
     }
 
-    IEnumerator PostMessage(string messageJson)
+    public IEnumerator PostMessage(string messageJson)
     {
         using (UnityWebRequest request = UnityWebRequest.PostWwwForm(apiUrl, messageJson))
         {
@@ -90,7 +90,7 @@ public class MsgProducer : MonoBehaviour
         }
     }
 
-    private void SendToRabbitMQ(string messageJson)
+    public void SendToRabbitMQ(string messageJson)
     {
         byte[] body = Encoding.UTF8.GetBytes(messageJson);
 
