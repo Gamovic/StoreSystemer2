@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -10,6 +11,9 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField passwordInput;
     public UnityEngine.UI.Button loginButton;
     public TMP_Text feedbackText;
+
+    public Canvas canvas;
+
 
     private const string loginUrl = "https://localhost:5001/login"; // tmp skal være API endpoint
 
@@ -71,6 +75,12 @@ public class LoginManager : MonoBehaviour
             {
                 feedbackText.text = "Login successful!";
                 // Handle successful login and token storage here
+
+                NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("room password");
+                NetworkManager.Singleton.StartClient();
+
+                canvas.gameObject.SetActive(false);
+
             }
             else
             {

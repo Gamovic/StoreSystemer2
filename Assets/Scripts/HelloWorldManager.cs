@@ -6,8 +6,8 @@ namespace HelloWorld
     public class HelloWorldManager : MonoBehaviour
     {
 
-
-
+        public  LoginManager loginManager;
+        public  Canvas canvas;
 
 
         void OnGUI()
@@ -28,17 +28,34 @@ namespace HelloWorld
             GUILayout.EndArea();
         }
 
-        static void StartButtons()
+         void StartButtons()
         {
-            if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
-            // if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
+            //if (GUILayout.Button("Client"))
+            //{
+            //    NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("room password");
+            //    NetworkManager.Singleton.StartClient();
+            //}
+
+            if (GUILayout.Button("Host"))
+            {
+                NetworkManager.Singleton.StartHost();
+                loginManager.gameObject.SetActive(false);
+                canvas.gameObject.SetActive(false);
+            }
+       
+
             if (GUILayout.Button("Client"))
             {
-                NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("room password");
-                NetworkManager.Singleton.StartClient();
-            } 
+                loginManager.gameObject.SetActive(true);
+                canvas.gameObject.SetActive(true);
+            }
 
-            if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
+            if (GUILayout.Button("Server"))
+            {
+                NetworkManager.Singleton.StartServer();
+                loginManager.gameObject.SetActive(false);
+                canvas.gameObject.SetActive(false);
+            }
         }
 
         static void StatusLabels()

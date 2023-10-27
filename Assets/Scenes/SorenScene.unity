@@ -1054,7 +1054,7 @@ MonoBehaviour:
     EnableTimeResync: 0
     TimeResyncInterval: 30
     EnsureNetworkVariableLengthSafety: 0
-    EnableSceneManagement: 1
+    EnableSceneManagement: 0
     ForceSamePrefabs: 1
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
@@ -1378,6 +1378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7a5e728ca64224f91e969877a951fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginManager: {fileID: 1949347938}
+  canvas: {fileID: 1231850708}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1231850706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,14 +2342,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1949347939}
   - component: {fileID: 1949347938}
-  - component: {fileID: 1949347940}
   m_Layer: 0
   m_Name: LoginManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1949347938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2364,6 +2365,7 @@ MonoBehaviour:
   passwordInput: {fileID: 1280267041}
   loginButton: {fileID: 1271019286}
   feedbackText: {fileID: 115790456}
+  canvas: {fileID: 1231850708}
 --- !u!4 &1949347939
 Transform:
   m_ObjectHideFlags: 0
@@ -2379,22 +2381,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1949347940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949347937}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1addb184930ad8c4b94b2ad651a1514d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usernameInput: {fileID: 716203690}
-  passwordInput: {fileID: 1280267041}
-  loginButton: {fileID: 1271019286}
-  feedbackText: {fileID: 115790456}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
