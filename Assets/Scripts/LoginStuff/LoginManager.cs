@@ -15,7 +15,7 @@ public class LoginManager : MonoBehaviour
     public Canvas canvas;
 
 
-    private const string loginUrl = "https://localhost:5001/login"; // tmp skal være API endpoint
+    private const string loginUrl = "https://localhost:5001/login"; // tmp skal vï¿½re API endpoint
 
     public void Start()
     {
@@ -24,7 +24,7 @@ public class LoginManager : MonoBehaviour
     }
 
 
-    private void LoginButtonClicked()
+    public void LoginButtonClicked()
     {
         string username = usernameInput.text;
         string password = passwordInput.text;

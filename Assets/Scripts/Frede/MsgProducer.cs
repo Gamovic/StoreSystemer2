@@ -11,8 +11,9 @@ using RabbitMQ.Client.Events;
 
 public class MsgProducer : MonoBehaviour
 {
+    public SessionSystem2 sessionSystem;
     public string apiUrl = "https://localhost:5001/messages";
-    public TMP_InputField nameInput;
+    //public TMP_InputField nameInput;
     public TMP_InputField messageInput;
     public Button sendButton;
 
@@ -48,7 +49,7 @@ public class MsgProducer : MonoBehaviour
 
     public void SendNewMessage()
     {
-        string newName = nameInput.text;
+        string newName = sessionSystem.GenerateUniqueMessageName();
         string newMessage = messageInput.text;
 
         // Create new message object
