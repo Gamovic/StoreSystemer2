@@ -144,7 +144,7 @@ public class SessionSystem : MonoBehaviour
         groupMessageButton.interactable = active;
     }
 
-    private string GenerateUniqueMessageName()
+    public string GenerateUniqueMessageName()
     {
         string uniqueName = RandomString(10);
         return uniqueName;

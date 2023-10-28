@@ -11,8 +11,10 @@ using RabbitMQ.Client.Events;
 
 public class MsgProducer : MonoBehaviour
 {
+    public SessionSystem sessionSystem;
+
     public string apiUrl = "https://localhost:5001/messages";
-    public TMP_InputField nameInput;
+    //public TMP_InputField nameInput;
     public TMP_InputField messageInput;
     public Button sendButton;
 
@@ -34,7 +36,25 @@ public class MsgProducer : MonoBehaviour
 
     private void InitializeRabbitMQ()
     {
-        var factory = new ConnectionFactory
+        try
+        {
+            var factory = new ConnectionFactory
+            {
+                HostName = rabbitMqHost,
+                UserName = rabbitMqUsername,
+                Password = rabbitMqPassword
+            };
+
+            connection = factory.CreateConnection();
+            channel = connection.CreateModel();
+            channel.ExchangeDeclare(exchange: rabbitMqExchange, type: ExchangeType.Direct);
+            Debug.Log("RabbitMQ connection initialized successfully.");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("RabbitMQ initialization error: " + ex.Message);
+        }
+       /* var factory = new ConnectionFactory
         {
             HostName = rabbitMqHost,
             UserName = rabbitMqUsername,
@@ -43,12 +63,12 @@ public class MsgProducer : MonoBehaviour
 
         connection = factory.CreateConnection();
         channel = connection.CreateModel();
-        channel.ExchangeDeclare(exchange: rabbitMqExchange, type: ExchangeType.Direct);
+        channel.ExchangeDeclare(exchange: rabbitMqExchange, type: ExchangeType.Direct);*/
     }
 
     public void SendNewMessage()
     {
-        string newName = nameInput.text;
+        string newName = sessionSystem.GenerateUniqueMessageName();
         string newMessage = messageInput.text;
 
         // Create new message object
@@ -92,7 +112,37 @@ public class MsgProducer : MonoBehaviour
 
     public void SendToRabbitMQ(string messageJson)
     {
-        byte[] body = Encoding.UTF8.GetBytes(messageJson);
+        try
+        {
+            if (connection != null && channel != null)
+            {
+                byte[] body = Encoding.UTF8.GetBytes(messageJson);
+
+                // Declare a durable queue
+                channel.QueueDeclare(queue: queueName,
+                                    durable: false, // Make queue durable - durability
+                                    exclusive: false,
+                                    autoDelete: false,
+                                    arguments: null);
+
+                channel.BasicPublish(exchange: rabbitMqExchange,
+                                    routingKey: rabbitMqRoutingKey,
+                                    basicProperties: null,
+                                    body: body);
+
+                Debug.Log("Message sent to RabbitMQ successfully.");
+            }
+            else
+            {
+                Debug.LogError("RabbitMQ connection or channel is not initialized.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("RabbitMQ send error: " + ex.Message);
+        }
+
+        /*byte[] body = Encoding.UTF8.GetBytes(messageJson);
 
         // Declare a durable queue
         channel.QueueDeclare(queue: queueName, 
@@ -106,12 +156,20 @@ public class MsgProducer : MonoBehaviour
                             basicProperties: null, 
                             body: body);
 
-        Debug.Log("Message sent to RabbitMQ successfully!");
+        Debug.Log("Message sent to RabbitMQ successfully!");*/
     }
 
     private void OnDestroy()
     {
-        channel.Close();
-        connection.Close();
+        if (channel != null)
+        {
+            channel.Close();
+        }
+        if (connection != null)
+        {
+            connection.Close();
+        }
+        /*channel.Close();
+        connection.Close();*/
     }
 }
