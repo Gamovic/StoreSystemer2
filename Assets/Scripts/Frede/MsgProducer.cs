@@ -97,7 +97,7 @@ public class MsgProducer : MonoBehaviour
 
         // Declare a durable queue
         channel.QueueDeclare(queue: queueName, 
-                            durable: false, // Make queue durable - durability
+                            durable: true, // Make queue durable - durability
                             exclusive: false, 
                             autoDelete: false, 
                             arguments: null);

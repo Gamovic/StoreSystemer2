@@ -10,7 +10,7 @@ using RabbitMQ.Client.Events;
 
 public class SessionSystem2 : MonoBehaviour
 {
-    public MsgConsumerAPI consumer;
+    public MsgConsumer consumer;
     public MsgProducer producer;
     public LoginManager loginManager;
 
@@ -44,13 +44,7 @@ public class SessionSystem2 : MonoBehaviour
         publicMessageButton.onClick.AddListener(SendPublicMessage);
         groupMessageButton.onClick.AddListener(SendGroupMessage);
 
-        InitializeRabbitMQ();
         //SetMessageButtonsActive(false);
-    }
-
-    private void InitializeRabbitMQ()
-    {
-        consumer.InitializeRabbitMQ();
     }
 
     private void HandleLogin(string enteredUsername, string enteredPassword)
@@ -145,9 +139,7 @@ public class SessionSystem2 : MonoBehaviour
                 // Send message to RabbitMQ
                 producer.SendToRabbitMQ(newMessage);
 
-                consumer.messageText.text = newMessage;
-
-                consumer.msgIsSent = true;
+                
             /*}
             else
             {

@@ -23,7 +23,7 @@ public class MsgConsumer : MonoBehaviour
         channel = connection.CreateModel();
 
         channel.QueueDeclare(queue: queueName,
-                            durable: false, // Make sure the queue is declared as durable
+                            durable: true, // Make sure the queue is declared as durable
                             exclusive: false,
                             autoDelete: false,
                             arguments: null);
@@ -34,8 +34,6 @@ public class MsgConsumer : MonoBehaviour
             var body = ea.Body;
             var message = Encoding.UTF8.GetString(body);
             Debug.Log($" [x] Received {message}");
-
-            //messageText.text = message;
 
             // Use the UnityMainThreadDispatcher to update the messageText
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
