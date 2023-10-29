@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42354b3e23f1bf4dbaf2a9cf247f3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consumer: {fileID: 2072547873}
+  consumer: {fileID: 0}
   producer: {fileID: 298384985}
   notificationText: {fileID: 1281991363}
   privateMessageButton: {fileID: 855098708}
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301b8a3828dabd743a737786d525ddb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consumer: {fileID: 2072547873}
+  consumer: {fileID: 0}
   producer: {fileID: 298384985}
   loginManager: {fileID: 1150929966}
   notificationText: {fileID: 1281991363}
@@ -3005,7 +3005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1281991362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3326,7 +3326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1317311800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3990,6 +3990,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13dec397fa58e64caeeb7f2614344ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1923351508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1923351510}
+  - component: {fileID: 1923351509}
+  m_Layer: 0
+  m_Name: UnityMainThreadDispatcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1923351509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923351508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d2108d6a67b9b48b21f33a3b449767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1923351510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923351508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 520.3315, y: 112.24028, z: -265.19144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1923403323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,7 +4682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2072547874}
-  - component: {fileID: 2072547873}
+  - component: {fileID: 2072547875}
   m_Layer: 0
   m_Name: API_Consumer
   m_TagString: Untagged
@@ -4646,26 +4690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2072547873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072547872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b39ecd9450a46f4fbc1da3676963903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  apiUrl: https://localhost:5001/messages
-  messageText: {fileID: 535377054}
-  rabbitMqHost: localhost
-  rabbitMqUsername: guest
-  rabbitMqPassword: guest
-  rabbitMqExchange: direct_logs
-  rabbitMqRoutingKey: black
-  msgIsSent: 0
 --- !u!4 &2072547874
 Transform:
   m_ObjectHideFlags: 0
@@ -4681,6 +4705,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072547875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072547872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be19908c34cf974cb96ab169b920a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queueName: receive_msg_queue
+  messageText: {fileID: 535377054}
 --- !u!1 &2098045313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4832,3 +4870,4 @@ SceneRoots:
   - {fileID: 461725343}
   - {fileID: 1604938107}
   - {fileID: 664739060}
+  - {fileID: 1923351510}

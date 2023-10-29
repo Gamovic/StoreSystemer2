@@ -34,6 +34,8 @@ public class MsgConsumerAPI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("MsgConsumerAPI Start() called.");
+
         InitializeRabbitMQ();
 
         StartCoroutine(GetDataFromAPI());
@@ -84,7 +86,7 @@ public class MsgConsumerAPI : MonoBehaviour
         }
     }
 
-    private void InitializeRabbitMQ()
+    public void InitializeRabbitMQ()
     {
         var factory = new ConnectionFactory
         {
@@ -205,6 +207,12 @@ public class MsgConsumerAPI : MonoBehaviour
         byte[] body = Encoding.UTF8.GetBytes(message);
         channel.BasicPublish(exchange: groupExchangeName, routingKey: "", basicProperties: null, body: body);
     }*/
+    private void OnMessageReceived(string message)
+    {
+        Debug.Log("Received message: " + message);
+        msgIsSent = true;
+        messageText.text = message; // Update the messageText with the received message content.
+    }
 }
 
 [System.Serializable]

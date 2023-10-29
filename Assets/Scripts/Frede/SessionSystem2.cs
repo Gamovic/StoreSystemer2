@@ -44,8 +44,13 @@ public class SessionSystem2 : MonoBehaviour
         publicMessageButton.onClick.AddListener(SendPublicMessage);
         groupMessageButton.onClick.AddListener(SendGroupMessage);
 
-        consumer.MessageReceived += OnMessageReceived;
+        InitializeRabbitMQ();
         //SetMessageButtonsActive(false);
+    }
+
+    private void InitializeRabbitMQ()
+    {
+        consumer.InitializeRabbitMQ();
     }
 
     private void HandleLogin(string enteredUsername, string enteredPassword)
@@ -98,16 +103,13 @@ public class SessionSystem2 : MonoBehaviour
         {
             // Send a private message to the target player
             //consumer.SendPrivateMessage(targetPlayerName, privateMessageContent);
+            
 
             // Sends message to API
             StartCoroutine(producer.PostMessage(jsonMessage));
 
             // Send message to RabbitMQ
             producer.SendToRabbitMQ(newMessage);
-
-            consumer.messageText.text = newMessage;
-
-            consumer.msgIsSent = true;
         }
         else
         {
@@ -196,8 +198,4 @@ public class SessionSystem2 : MonoBehaviour
         notificationText.text = "Logged in as " + currentPlayerName;
     }
 
-    private void OnMessageReceived(string message)
-    {
-        Debug.Log("Received message: " + message);
-    }
 }
