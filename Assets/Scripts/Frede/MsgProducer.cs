@@ -29,8 +29,8 @@ public class MsgProducer : MonoBehaviour
 
     private void Start()
     {
-        sendButton.onClick.AddListener(SendNewMessage);
         InitializeRabbitMQ();
+        sendButton.onClick.AddListener(SendNewMessage);
     }
 
     private void InitializeRabbitMQ()

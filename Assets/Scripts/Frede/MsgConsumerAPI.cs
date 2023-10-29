@@ -30,11 +30,12 @@ public class MsgConsumerAPI : MonoBehaviour
 
     public MsgConsumerAPI()
     {
-        InitializeRabbitMQ();
     }
 
     void Start()
     {
+        InitializeRabbitMQ();
+
         StartCoroutine(GetDataFromAPI());
     }
 

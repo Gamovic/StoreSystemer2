@@ -44,7 +44,8 @@ public class SessionSystem2 : MonoBehaviour
         publicMessageButton.onClick.AddListener(SendPublicMessage);
         groupMessageButton.onClick.AddListener(SendGroupMessage);
 
-        
+        consumer.MessageReceived += OnMessageReceived;
+        //SetMessageButtonsActive(false);
     }
 
     private void HandleLogin(string enteredUsername, string enteredPassword)
